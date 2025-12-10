@@ -10,6 +10,8 @@ public partial class InsultContext : DbContext {
     }
 
     public virtual DbSet<Insult> Insults { get; set; }
+    public virtual DbSet<Category> Categories { get; set; }
+    public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Data Source=localhost;Database=Insulter;Integrated Security=True;TrustServerCertificate=True;");
