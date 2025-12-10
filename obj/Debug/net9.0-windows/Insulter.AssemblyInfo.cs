@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Insulter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac78ae0fb853c6bdb6e7844770b97fb778deec57")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c74ad28a6683279dad99ef58076190cbdb6f834")]
 [assembly: System.Reflection.AssemblyProductAttribute("Insulter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Insulter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

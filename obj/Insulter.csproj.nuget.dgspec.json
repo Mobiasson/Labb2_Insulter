@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\Insulter\\Insulter.csproj": {}
+    "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\Insulter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\Insulter\\Insulter.csproj": {
+    "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\Insulter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\Insulter\\Insulter.csproj",
+        "projectUniqueName": "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\Insulter.csproj",
         "projectName": "Insulter",
-        "projectPath": "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\Insulter\\Insulter.csproj",
+        "projectPath": "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\Insulter.csproj",
         "packagesPath": "C:\\Users\\MIkael\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\Insulter\\obj\\",
+        "outputPath": "C:\\Users\\MIkael\\Desktop\\CODEnSTUFF\\Databases\\Assignments\\Labb2_Insulter\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MIkael\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -55,6 +55,12 @@
               "version": "[9.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.11, )"
+            },
+            "System.Configuration.ConfigurationManager": {
               "target": "Package",
               "version": "[9.0.11, )"
             }
