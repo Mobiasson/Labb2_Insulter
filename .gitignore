@@ -4,6 +4,7 @@ bin/
 obj/
 
 # Visual Studio working files
+.vs/*
 .vs/
 
 # User-specific files
