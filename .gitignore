@@ -1,0 +1,32 @@
+##
+# Build outputs
+bin/
+obj/
+
+# Visual Studio working files
+.vs/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.userprefs
+
+# Logs
+*.log
+
+# NuGet packages
+**/packages/*
+
+# Rider/Resharper
+.idea/
+.ReSharper*/
+*_Resharper*/
+
+# Temp files
+*.tmp
+*.temp
+
+# VS Code
+.vscode/
