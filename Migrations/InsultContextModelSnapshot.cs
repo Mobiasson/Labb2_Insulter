@@ -41,17 +41,31 @@ namespace Insulter.Migrations
 
             modelBuilder.Entity("Insulter.Model.Insult", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("Number")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Relational:JsonPropertyName", "number");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Number"));
+
+                    b.Property<string>("Created")
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "created");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "language");
+
+                    b.Property<string>("Shown")
+                        .HasColumnType("nvarchar(max)")
+                        .HasAnnotation("Relational:JsonPropertyName", "shown");
 
                     b.Property<string>("Text")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasAnnotation("Relational:JsonPropertyName", "insult");
 
-                    b.HasKey("Id");
+                    b.HasKey("Number");
 
                     b.ToTable("Insults");
                 });

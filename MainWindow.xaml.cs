@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Threading.Tasks;
-using Insulter.Model;
+using Insulter.Services;
 
 namespace Insulter;
 public partial class MainWindow : Window {
@@ -9,7 +9,7 @@ public partial class MainWindow : Window {
     }
 
     private async void FetchInsult_Click(object sender, RoutedEventArgs e) {
-        var insult = await InsultService.GetInsultAsync();
-        MessageBox.Show(insult ?? "No insult received", "API Test", MessageBoxButton.OK, MessageBoxImage.Information);
+        var json = await InsultService.GetRawJsonAsync();
+        MessageBox.Show(json ?? "No response", "Raw JSON", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 }

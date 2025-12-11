@@ -27,13 +27,16 @@ namespace Insulter.Migrations
                 name: "Insults",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Number = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Created = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Shown = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Insults", x => x.Id);
+                    table.PrimaryKey("PK_Insults", x => x.Number);
                 });
 
             migrationBuilder.CreateTable(

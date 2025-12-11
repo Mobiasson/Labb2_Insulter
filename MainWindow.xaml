@@ -11,7 +11,7 @@
         </Grid.ColumnDefinitions>
         <!--<TextBox x:Name="SearchBox" materialDesign:HintAssist.Hint="Search insults" />-->
         <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Fetch Insult" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="auto" Padding="5" Click="FetchInsult_Click" />
+            <Button Content="Fetch Insult" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Roboto/Roboto-BoldItalic.ttf#Roboto" Width="auto" Padding="5" Click="FetchInsult_Click" />
         </StackPanel>
     </Grid>
 </Window>

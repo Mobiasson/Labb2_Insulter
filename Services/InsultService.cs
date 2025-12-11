@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Insulter.Model;
+namespace Insulter.Services;
 
 public class InsultApiResponse {
     public string? insult { get; set; }
@@ -12,12 +12,17 @@ public class InsultApiResponse {
 
 public static class InsultService {
     private static readonly HttpClient _http = new HttpClient();
-    public static async Task<string?> GetInsultAsync(string lang = "en") {
+
+    public static async Task<string> GetRawJsonAsync(string lang = "en") {
         var url = $"https://evilinsult.com/generate_insult.php?lang={lang}&type=json";
         using var resp = await _http.GetAsync(url);
         resp.EnsureSuccessStatusCode();
-        await using var stream = await resp.Content.ReadAsStreamAsync();
-        var data = await JsonSerializer.DeserializeAsync<InsultApiResponse>(stream, new JsonSerializerOptions {
+        return await resp.Content.ReadAsStringAsync();
+    }
+
+    public static async Task<string?> GetInsultAsync(string lang = "en") {
+        var json = await GetRawJsonAsync(lang);
+        var data = JsonSerializer.Deserialize<InsultApiResponse>(json, new JsonSerializerOptions {
             PropertyNameCaseInsensitive = true
         });
         return data?.insult;
