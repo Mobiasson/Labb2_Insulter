@@ -17,7 +17,7 @@ public partial class InsultContext : DbContext {
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.Entity<Insult>(entity => {
-            entity.Property(e => e.Text).IsRequired(false).HasMaxLength(200);
+            entity.Property(e => e.Text).HasColumnType("nvarchar(max)");
         });
 
         modelBuilder.Entity<Category>(entity => {

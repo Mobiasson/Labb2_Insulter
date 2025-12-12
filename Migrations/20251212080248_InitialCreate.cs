@@ -27,8 +27,9 @@ namespace Insulter.Migrations
                 name: "Insults",
                 columns: table => new
                 {
-                    Number = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ApiNumber = table.Column<int>(type: "int", nullable: true),
                     Language = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Created = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Shown = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -36,7 +37,7 @@ namespace Insulter.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Insults", x => x.Number);
+                    table.PrimaryKey("PK_Insults", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(

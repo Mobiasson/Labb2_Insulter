@@ -3,6 +3,7 @@ using Insulter.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Insulter.Migrations
 {
     [DbContext(typeof(InsultContext))]
-    partial class InsultContextModelSnapshot : ModelSnapshot
+    [Migration("20251212082646_updated1.1")]
+    partial class updated11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,6 +50,11 @@ namespace Insulter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("ApiNumber")
+                        .HasColumnType("int")
+                        .HasColumnName("ApiNumber")
+                        .HasAnnotation("Relational:JsonPropertyName", "number");
+
                     b.Property<string>("Created")
                         .HasColumnType("nvarchar(max)")
                         .HasAnnotation("Relational:JsonPropertyName", "created");
@@ -56,7 +64,8 @@ namespace Insulter.Migrations
                         .HasAnnotation("Relational:JsonPropertyName", "language");
 
                     b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
                         .HasAnnotation("Relational:JsonPropertyName", "insult");
 
                     b.HasKey("Id");

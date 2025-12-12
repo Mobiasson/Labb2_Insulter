@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Insulter.Migrations
 {
     [DbContext(typeof(InsultContext))]
-    [Migration("20251211090222_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251212081945_updated")]
+    partial class updated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,31 +44,31 @@ namespace Insulter.Migrations
 
             modelBuilder.Entity("Insulter.Model.Insult", b =>
                 {
-                    b.Property<int>("Number")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ApiNumber")
                         .HasColumnType("int")
+                        .HasColumnName("ApiNumber")
                         .HasAnnotation("Relational:JsonPropertyName", "number");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Number"));
-
-                    b.Property<string>("Created")
-                        .HasColumnType("nvarchar(max)")
+                    b.Property<int?>("Created")
+                        .HasColumnType("int")
                         .HasAnnotation("Relational:JsonPropertyName", "created");
 
                     b.Property<string>("Language")
                         .HasColumnType("nvarchar(max)")
                         .HasAnnotation("Relational:JsonPropertyName", "language");
 
-                    b.Property<string>("Shown")
-                        .HasColumnType("nvarchar(max)")
-                        .HasAnnotation("Relational:JsonPropertyName", "shown");
-
                     b.Property<string>("Text")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)")
                         .HasAnnotation("Relational:JsonPropertyName", "insult");
 
-                    b.HasKey("Number");
+                    b.HasKey("Id");
 
                     b.ToTable("Insults");
                 });
