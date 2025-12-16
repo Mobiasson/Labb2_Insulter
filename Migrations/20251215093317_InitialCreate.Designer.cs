@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Insulter.Migrations
 {
     [DbContext(typeof(InsultContext))]
-    [Migration("20251212081945_updated")]
-    partial class updated
+    [Migration("20251215093317_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,13 +50,8 @@ namespace Insulter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ApiNumber")
-                        .HasColumnType("int")
-                        .HasColumnName("ApiNumber")
-                        .HasAnnotation("Relational:JsonPropertyName", "number");
-
-                    b.Property<int?>("Created")
-                        .HasColumnType("int")
+                    b.Property<string>("Created")
+                        .HasColumnType("nvarchar(max)")
                         .HasAnnotation("Relational:JsonPropertyName", "created");
 
                     b.Property<string>("Language")
@@ -64,8 +59,7 @@ namespace Insulter.Migrations
                         .HasAnnotation("Relational:JsonPropertyName", "language");
 
                     b.Property<string>("Text")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasColumnType("nvarchar(max)")
                         .HasAnnotation("Relational:JsonPropertyName", "insult");
 
                     b.HasKey("Id");

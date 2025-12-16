@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using Insulter.Model;
+using Insulter.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Insulter;
@@ -10,18 +11,14 @@ public partial class App : Application {
         try {
             using var db = new InsultContext();
 #if DEBUG
-                // Dev/test only: drop and recreate DB from migrations each run
-                db.Database.EnsureDeleted();
-                db.Database.Migrate();
-#else
-                // Prod: apply incremental migrations only
-                db.Database.Migrate();
+            //db.Database.EnsureDeleted();
+            db.Database.Migrate();
+            _ = InsultService.FetchAndSaveBatchAsync(50);
 #endif
         }
         catch(System.Exception ex) {
             MessageBox.Show(ex.ToString(), "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-
         var window = new MainWindow();
         window.Show();
     }

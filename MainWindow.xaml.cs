@@ -2,8 +2,6 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using Insulter.Services;
-using Insulter.Model;
-using Microsoft.EntityFrameworkCore;
 
 namespace Insulter;
 public partial class MainWindow : Window, INotifyPropertyChanged {
@@ -13,6 +11,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged {
         set { _insult = value; OnPropertyChanged(); }
     }
 
+    private bool _isLoading;
+    public bool IsLoading {
+        get => _isLoading;
+        set { _isLoading = value; OnPropertyChanged(); }
+    }
+
     public MainWindow() {
         InitializeComponent();
         DataContext = this;
@@ -20,20 +24,16 @@ public partial class MainWindow : Window, INotifyPropertyChanged {
 
     private async void FetchInsult_Click(object sender, RoutedEventArgs e) {
         try {
-            var insult = await InsultService.GetInsultObjectAsync();
-            Insult = insult?.Text ?? "No response";
-            if(insult is null) {
-                MessageBox.Show("No response", "API", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            using var db = new InsultContext();
-            await db.Database.MigrateAsync();
-            db.Insults.Add(insult);
-            await db.SaveChangesAsync();
-            MessageBox.Show($"Saved #: {insult.Text}", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+            IsLoading = true;
+            var saved = await InsultService.FetchAndSaveBatchAsync(100);
+            Insult = $"Seeded {saved} insults.";
+            MessageBox.Show(Insult, "Batch Seed", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch(System.Exception ex) {
             MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        finally {
+            IsLoading = false;
         }
     }
 
