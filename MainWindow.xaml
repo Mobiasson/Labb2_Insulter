@@ -3,9 +3,19 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
     <Grid>
-        <TextBlock Text="{Binding Insult}" Margin="10" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10">
-            <Button Content="Fetch Insult" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Roboto/Roboto-BoldItalic.ttf#Roboto" Width="auto" Padding="5" Click="FetchInsult_Click" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Margin="10" Padding="10">
+            <TextBlock Text="{Binding Insult}" Margin="10" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Vertical" Margin="10">
+            <Button Content="Insult Me" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Roboto/Roboto-BoldItalic.ttf#Roboto" Width="auto" Padding="5" Margin="10" BorderBrush="White" BorderThickness="1" Click="GetInsultFromDB_Click" />
+            <Button Content="Fetch Insult" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Roboto/Roboto-BoldItalic.ttf#Roboto" Width="auto" Padding="5" Margin="10" BorderBrush="White" BorderThickness="1" Click="FetchInsult_Click" />
         </StackPanel>
         <Grid Background="#80000000" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -25,7 +25,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged {
     private async void FetchInsult_Click(object sender, RoutedEventArgs e) {
         try {
             IsLoading = true;
-            var saved = await InsultService.FetchAndSaveBatchAsync(100);
+            var saved = await InsultService.FetchAndSaveBatchAsync(50);
             Insult = $"Seeded {saved} insults.";
             MessageBox.Show(Insult, "Batch Seed", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -35,6 +35,10 @@ public partial class MainWindow : Window, INotifyPropertyChanged {
         finally {
             IsLoading = false;
         }
+    }
+
+    private async void GetInsultFromDB_Click(object sender, RoutedEventArgs e) {
+
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
