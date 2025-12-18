@@ -11,7 +11,7 @@ public partial class App : Application {
         try {
             using var db = new InsultContext();
 #if DEBUG
-            db.Database.EnsureDeleted();
+            //db.Database.EnsureDeleted();
             db.Database.Migrate();
 #endif
         }

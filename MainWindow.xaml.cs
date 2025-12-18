@@ -26,10 +26,10 @@ public partial class MainWindow : Window, INotifyPropertyChanged {
         try {
             IsLoading = true;
             var saved = await InsultService.FetchAndSaveBatchAsync(50);
-            Insult = $"Seeded {saved} insults.";
-            MessageBox.Show(Insult, "Batch Seed", MessageBoxButton.OK, MessageBoxImage.Information);
+            Insult = $"I found {saved} ways to insult you";
+            MessageBox.Show(Insult, "", MessageBoxButton.OK, MessageBoxImage.Information);
         }
-        catch(System.Exception ex) {
+        catch(Exception ex) {
             MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
         finally {
@@ -38,7 +38,17 @@ public partial class MainWindow : Window, INotifyPropertyChanged {
     }
 
     private async void GetInsultFromDB_Click(object sender, RoutedEventArgs e) {
-
+        try {
+            IsLoading = true;
+            var insult = await InsultService.GetRandomInsultAsync();
+            Insult = insult?.Text ?? "I really want to insult you. But there are no insults in the database.";
+        }
+        catch(Exception ex) {
+            MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        finally {
+            IsLoading = false;
+        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

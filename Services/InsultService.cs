@@ -34,7 +34,6 @@ public static class InsultService {
         var json = await GetRawJsonAsync(lang);
         var dto = JsonSerializer.Deserialize<InsultApiResponse>(json, _jsonOpts);
         if(dto == null || string.IsNullOrWhiteSpace(dto.insult)) return null;
-
         int? apiNumber = null;
         if(dto.number is JsonElement je) {
             if(je.ValueKind == JsonValueKind.Number && je.TryGetInt32(out var n)) apiNumber = n;
@@ -46,6 +45,16 @@ public static class InsultService {
             Created = dto.created,
             Language = dto.language,
         };
+    }
+    public static async Task<Insult?> GetRandomInsultAsync() {
+        using var db = new InsultContext();
+        var count = await db.Insults.CountAsync();
+        if(count == 0) return null;
+        var randomIndex = new Random().Next(0, count);
+        return await db.Insults
+            .OrderBy(i => i.Id)
+            .Skip(randomIndex)
+            .FirstOrDefaultAsync();
     }
 
     public static async Task<int> FetchAndSaveBatchAsync(int count, string lang = "en", CancellationToken ct = default) {

@@ -9,7 +9,6 @@ public class Insult {
     [JsonPropertyName("language")]
     public string? Language { get; set; }
 
-    // API 'created' is a string timestamp; store as string
     [JsonPropertyName("created")]
     public string? Created { get; set; }
 
