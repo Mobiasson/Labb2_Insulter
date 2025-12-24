@@ -14,8 +14,9 @@
             <TextBlock Text="{Binding Insult}" FontSize="24" FontWeight="SemiBold" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" FontFamily="/Resources/Roboto/Roboto-Italic.ttf#Roboto" />
         </Border>
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Vertical" Margin="10">
-            <Button Content="Insult Me" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Roboto/Roboto-BoldItalic.ttf#Roboto" Width="auto" Padding="5" Margin="10" BorderBrush="White" BorderThickness="1" Click="GetInsultFromDB_Click"/>
-            <Button Content="Fetch Insult" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Roboto/Roboto-BoldItalic.ttf#Roboto" Width="auto" Padding="5" Margin="10" BorderBrush="White" BorderThickness="1" Click="FetchInsult_Click" />
+            <Button Content="Insult Me" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Noto/NotoSans-Bold.ttf#Noto Sans" Width="auto" Padding="5" Margin="10" BorderBrush="White" BorderThickness="1" Click="GetInsultFromDB_Click" />
+            <Button Content="Fetch Insults" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Noto/NotoSans-Bold.ttf#Noto Sans" Width="auto" Padding="5" Margin="10" BorderBrush="White" BorderThickness="1" Click="FetchInsult_Click" />
+            <Button Content="Clear Database" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Noto/NotoSans-Bold.ttf#Noto Sans" Width="auto" Padding="5" Margin="10" BorderBrush="White" BorderThickness="1" Click="ClearDatabase_Click"/>
         </StackPanel>
         <Grid Background="#80000000" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">

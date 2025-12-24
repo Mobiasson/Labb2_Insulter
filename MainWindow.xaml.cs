@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using Insulter.Model;
 using Insulter.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Insulter;
 public partial class MainWindow : Window, INotifyPropertyChanged {
@@ -54,4 +56,20 @@ public partial class MainWindow : Window, INotifyPropertyChanged {
     public event PropertyChangedEventHandler? PropertyChanged;
     private void OnPropertyChanged([CallerMemberName] string? name = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+    private async void ClearDatabase_Click(object sender, RoutedEventArgs e) {
+        try {
+            IsLoading = true;
+            await using var db = new InsultContext();
+            var deleted = await db.Insults.ExecuteDeleteAsync();
+            Insult = deleted > 0 ? $"Deleted {deleted} insults from the database." : "No insults to delete.";
+            MessageBox.Show(Insult, "", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+        catch(Exception ex) {
+            MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        finally {
+            IsLoading = false;
+        }
+    }
 }
