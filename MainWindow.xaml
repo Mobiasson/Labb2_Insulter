@@ -2,7 +2,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
-    <Grid>
+    <Grid ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
@@ -10,21 +10,8 @@
         <Border Background="#CC2A2A5A" CornerRadius="20" Padding="30" Margin="50" MaxWidth="600" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="{Binding Insult}" FontSize="28" FontWeight="SemiBold" Foreground="White" TextWrapping="Wrap" TextAlignment="Center" FontFamily="/Resources/Roboto/Roboto-Italic.ttf#Roboto" />
         </Border>
-        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20" Width="250">
-            <TextBlock Text="Select Voice:" Foreground="White" FontSize="14" Margin="0,0,0,5" />
-            <ComboBox ItemsSource="{Binding AvailableVoices}" SelectedItem="{Binding SelectedVoice}" IsEditable="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" TextSearch.TextPath="Title" materialDesign:HintAssist.Hint="Search voices (Trump, Obama, Mario...)" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="0,0,0,15" Height="50">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock>
-                <Run Text="{Binding Title}" FontWeight="Bold" />
-                <Run Text=" (" Foreground="#AAAAAA" />
-                <Run Text="{Binding CreatorUsername}" Foreground="#AAAAAA" />
-                <Run Text=")" Foreground="#AAAAAA" /></TextBlock>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20" Width="150">
             <Button Content="Insult Me" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Noto/NotoSans-Bold.ttf#Noto Sans" Margin="0,0,0,10" BorderBrush="White" BorderThickness="1" Click="GetInsultFromDB_Click" />
-            <Button Content="Speak Insult" Style="{StaticResource MaterialDesignRaisedDarkButton}" Background="#FF6A00" Foreground="White" FontFamily="/Resources/Noto/NotoSans-Bold.ttf#Noto Sans" Margin="0,0,0,10" BorderBrush="White" BorderThickness="1" Click="SpeakInsult_Click" ToolTip="Uses selected FakeYou voice (or Windows fallback)" />
             <Button Content="Fetch Insults" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Noto/NotoSans-Bold.ttf#Noto Sans" Margin="0,0,0,10" BorderBrush="White" BorderThickness="1" Click="FetchInsult_Click" />
             <Button Content="Clear Database" Style="{StaticResource MaterialDesignRaisedDarkButton}" FontFamily="/Resources/Noto/NotoSans-Bold.ttf#Noto Sans" Margin="0,0,0,10" BorderBrush="White" BorderThickness="1" Click="ClearDatabase_Click" />
         </StackPanel>
