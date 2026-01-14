@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using Insulter.Model;
-using Insulter.Services;
+using Insulter.Dialog;
 using Microsoft.EntityFrameworkCore;
 
 namespace Insulter;
@@ -8,17 +9,27 @@ namespace Insulter;
 public partial class App : Application {
     protected override void OnStartup(StartupEventArgs e) {
         base.OnStartup(e);
+
         try {
             using var db = new InsultContext();
 #if DEBUG
-            //db.Database.EnsureDeleted();
             db.Database.Migrate();
 #endif
         }
-        catch(System.Exception ex) {
+        catch(Exception ex) {
             MessageBox.Show(ex.ToString(), "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            Shutdown();
+            return;
         }
-        var window = new MainWindow();
-        window.Show();
+        var mainWindow = new MainWindow();
+        mainWindow.Show();
+        var userPrompt = new UserPromptDialog { Owner = mainWindow };
+        var result = userPrompt.ShowDialog();
+        if(result == true) {
+            return;
+        }
+
+        mainWindow.Close();
+        Shutdown();
     }
 }
