@@ -1,4 +1,4 @@
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Text.Json;
 using Insulter.Model;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +19,14 @@ public static class InsultService {
 
     public static async Task<string> GetRawJsonAsync(string lang = "en") {
         var url = $"https://evilinsult.com/generate_insult.php?lang={lang}&type=json";
-        using var resp = await _http.GetAsync(url);
-        resp.EnsureSuccessStatusCode();
-        return await resp.Content.ReadAsStringAsync();
+        try {
+            using var resp = await _http.GetAsync(url);
+            resp.EnsureSuccessStatusCode();
+            return await resp.Content.ReadAsStringAsync();
+        }
+        catch(HttpRequestException ex) {
+            throw new Exception($"HTTP request to {url} failed: {ex.Message}", ex);
+        }
     }
 
     public static async Task<string?> GetInsultAsync(string lang = "en") {

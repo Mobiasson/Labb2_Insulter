@@ -1,16 +1,16 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using Insulter.Model;
+using Insulter.Dialog;
 using Insulter.Services;
-using MaterialDesignThemes.Wpf;
 using Microsoft.EntityFrameworkCore;
 
 namespace Insulter;
 
 public partial class MainWindow : INotifyPropertyChanged {
     private string? _insult = "Click 'Insult Me' to get roasted!";
+    public string LoadingMessage { get; set; } = "Please wait...";
     public string? Insult {
         get => _insult;
         set { _insult = value; OnPropertyChanged(); }
@@ -22,34 +22,15 @@ public partial class MainWindow : INotifyPropertyChanged {
         set { _isLoading = value; OnPropertyChanged(); }
     }
 
-    private bool _numberOfInsults;
-    public bool NumberOfInsults {
-        get => _numberOfInsults;
-        set { _numberOfInsults = value; OnPropertyChanged(); }
-    }
-
-    public string LoadingMessage { get; set; } = "Please wait...";
-
 
     public MainWindow() {
         InitializeComponent();
         DataContext = this;
     }
 
-    private async void FetchInsult_Click(object sender, RoutedEventArgs e) {
-        try {
-            IsLoading = true;
-            var saved = await InsultService.FetchAndSaveBatchAsync(50);
-            Insult = $"I found {saved} ways to insult you!";
-            MessageBox.Show(Insult, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        catch(System.Exception ex) {
-            MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-        finally {
-            IsLoading = false;
-        }
-
+    private void FetchInsult_Click(object sender, RoutedEventArgs e) {
+        FetchInsultDialog fid = new FetchInsultDialog();
+        fid.ShowDialog();
     }
 
     private async void GetInsultFromDB_Click(object sender, RoutedEventArgs e) {
@@ -64,6 +45,7 @@ public partial class MainWindow : INotifyPropertyChanged {
         finally {
             IsLoading = false;
         }
+
     }
 
     private async void ClearDatabase_Click(object sender, RoutedEventArgs e) {
