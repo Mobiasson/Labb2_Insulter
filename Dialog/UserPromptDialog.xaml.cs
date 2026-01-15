@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Insulter.Model;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using Insulter.Model;
-using Microsoft.EntityFrameworkCore;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Insulter.Dialog;
 
 public partial class UserPromptDialog : Window, INotifyPropertyChanged {
     private string? _userName;
+
+
     public string? UserName {
         get => _userName;
         private set { _userName = value; OnPropertyChanged(); }
@@ -24,9 +27,13 @@ public partial class UserPromptDialog : Window, INotifyPropertyChanged {
 
     private async void Ok_Click(object sender, RoutedEventArgs e) {
         var name = NameTextBox.Text?.Trim();
+        bool hasDigits = name.Any(char.IsDigit);
         if(string.IsNullOrEmpty(name)) {
-            MessageBox.Show("Please enter a name to continue.", "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show("Username cannot be null.", "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
             NameTextBox.Focus();
+            return;
+        } else if(hasDigits) {
+            MessageBox.Show("UserName cannot contains digits");
             return;
         }
 
