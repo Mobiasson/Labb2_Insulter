@@ -5,8 +5,8 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
-            <TextBlock Text="Please enter your name:" />
-            <TextBox x:Name="NameTextBox" Width="300" HorizontalAlignment="Left" BorderBrush="MediumPurple" BorderThickness="1" Padding="3"/>
+            <TextBlock Text="Please enter your name:" Margin="0, 0, 0, 3" />
+            <TextBox x:Name="NameTextBox" Width="300" HorizontalAlignment="Left" BorderBrush="MediumPurple" BorderThickness="1" Padding="3" />
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
             <Button Content="Cancel" Width="auto" Click="Cancel_Click" Margin="5" IsCancel="True" />
