@@ -9,7 +9,6 @@ public partial class InsultContext : DbContext {
     public InsultContext(DbContextOptions<InsultContext> options) : base(options) {
     }
     public virtual DbSet<Insult> Insults { get; set; }
-    public virtual DbSet<Category> Categories { get; set; }
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -18,10 +17,6 @@ public partial class InsultContext : DbContext {
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         modelBuilder.Entity<Insult>(entity => {
             entity.Property(e => e.Text).HasColumnType("nvarchar(max)");
-        });
-
-        modelBuilder.Entity<Category>(entity => {
-            entity.Property(e => e.Type).IsRequired().HasMaxLength(50);
         });
 
         modelBuilder.Entity<User>(entity => {
