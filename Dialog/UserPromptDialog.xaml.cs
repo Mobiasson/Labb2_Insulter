@@ -32,7 +32,6 @@ public partial class UserPromptDialog : Window, INotifyPropertyChanged {
 
         try {
             await using var db = new InsultContext();
-
             var existing = await db.Users.FirstOrDefaultAsync(u => u.Name == name);
             if(existing is not null) {
                 UserName = existing.Name;

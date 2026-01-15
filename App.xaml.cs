@@ -26,9 +26,10 @@ public partial class App : Application {
         var userPrompt = new UserPromptDialog { Owner = mainWindow };
         var result = userPrompt.ShowDialog();
         if(result == true) {
+            var user = userPrompt.UserName;
+            mainWindow.Title = string.IsNullOrWhiteSpace(user) ? "Insulter" : $"Insulter - {user}";
             return;
         }
-
         mainWindow.Close();
         Shutdown();
     }

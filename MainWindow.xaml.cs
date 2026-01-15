@@ -50,7 +50,7 @@ public partial class MainWindow : INotifyPropertyChanged {
 
     private async void ClearDatabase_Click(object sender, RoutedEventArgs e) {
         try {
-            if(MessageBox.Show("Are you sure you want to delete everything from the database?",
+            if(MessageBox.Show("Are you sure you wnat to delete all insults in the database?",
                     "Confirmation",
                     MessageBoxButton.YesNo,
                     MessageBoxImage.Question) == MessageBoxResult.Yes) {
@@ -58,7 +58,7 @@ public partial class MainWindow : INotifyPropertyChanged {
                 LoadingMessage = "Clearing database...";
                 await using var db = new InsultContext();
                 var deleted = await db.Insults.ExecuteDeleteAsync();
-                Insult = deleted > 0 ? $"Deleted {deleted} insults." : "Database was already empty.";
+                Insult = deleted > 0 ? $"Deleted {deleted} insults. Let me know if you want me find new ways to insult you :)" : "Database was already empty.";
                 MessageBox.Show(Insult, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
