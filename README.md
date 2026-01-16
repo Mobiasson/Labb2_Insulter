@@ -4,14 +4,11 @@
 A WPF application that lets the user generate, view, favourite, edit, and delete insults. All data is stored in a local SQL Server database using Entity Framework Code-First with migrations.
 
 **Features**
-- Full CRUD operations using Entity Framework:
   - Create: Add new insults
-  - Read: List all insults + generate a random one
-  - Update: Edit existing insults
   - Delete: Remove insults
 - At least two related tables:
-  - `Insults` (Id, Text, Rating)
-  - `Categories` (Id, Name) + many-to-many relationship
+  - `Insults`
+  - `Users`
 - Both tables are actively used in the app
 
 **Database**
