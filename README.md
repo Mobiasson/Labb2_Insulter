@@ -24,10 +24,7 @@ A WPF application that lets the user generate, view, favourite, edit, and delete
    ```bash
    git clone <your-repo-url>
 
-LoginScreen
 ![Login](Screenshots/LoginScreenshot.png)
-German
 ![GermanInsult](Screenshots/GermanInsultScreenshot.png)
-English
 ![EnglishInsult](Screenshots/EnglishInsultScreenshot.png)
 
