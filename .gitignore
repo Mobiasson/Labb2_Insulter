@@ -2,31 +2,56 @@
 # Build outputs
 bin/
 obj/
+artifacts/
+out/
+publish/
 
 # Visual Studio working files
 .vs/
-
-# User-specific files
-*.user
-*.rsuser
 *.suo
+*.user
 *.userosscache
-*.userprefs
+*.sln.docstates
 
-# Logs
-*.log
+# WPF/VS temporary project files
+*_wpftmp.csproj
 
-# NuGet packages
-**/packages/*
+# Generated files from XAML/compilation (obj already covers most)
+*.g.cs
+*.g.i.cs
+*.g.resources
 
-# Rider/Resharper
-.idea/
-.ReSharper*/
-*_Resharper*/
+# NuGet & packaging
+*.nupkg
+.packages/
+.nuget/
 
-# Temp files
-*.tmp
-*.temp
+# Local database / runtime files (if you ever use local DB files)
+*.mdf
+*.ldf
+*.db
+*.db-wal
+*.db-shm
 
-# VS Code
+# IDE/editor
 .vscode/
+.idea/
+*.iml
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# Logs, temp, OS files
+*.log
+Thumbs.db
+ehthumbs.db
+.DS_Store
+
+# Node / front-end (if present)
+node_modules/
+bower_components/
+
+# Ignore publish artefacts
+*.Publish.xml
+*.publishsettings
