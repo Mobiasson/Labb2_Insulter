@@ -7,17 +7,15 @@ using Microsoft.EntityFrameworkCore;
 namespace Insulter;
 
 public partial class App : Application {
-    protected override void OnStartup(StartupEventArgs e) {
+    protected override async void OnStartup(StartupEventArgs e) {
         base.OnStartup(e);
 
         try {
             using var db = new InsultContext();
-#if DEBUG
-            db.Database.Migrate();
-#endif
+            await db.Database.MigrateAsync();
         }
         catch(Exception ex) {
-            MessageBox.Show(ex.ToString(), "Startup Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(ex.ToString(), "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
             Shutdown();
             return;
         }
@@ -25,12 +23,15 @@ public partial class App : Application {
         mainWindow.Show();
         var userPrompt = new UserPromptDialog { Owner = mainWindow };
         var result = userPrompt.ShowDialog();
+
         if(result == true) {
             var user = userPrompt.UserName;
-            mainWindow.Title = string.IsNullOrWhiteSpace(user) ? "Insulter" : $"Insulter - {user}";
-            return;
+            mainWindow.Title = string.IsNullOrWhiteSpace(user)
+                ? "Insulter"
+                : $"Insulter - {user}";
+        } else {
+            mainWindow.Close();
+            Shutdown();
         }
-        mainWindow.Close();
-        Shutdown();
     }
 }

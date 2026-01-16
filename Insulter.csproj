@@ -27,4 +27,22 @@
     <Page Include="App.xaml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="C:\Users\MIkael\.nuget\packages\materialdesignthemes\5.3.0\contentFiles\any\net8.0-windows7.0\Resources\Noto\NotoSans-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Screenshots\EnglishInsultScreenshot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screenshots\GermanInsultScreenshot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Screenshots\LoginScreenshot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
