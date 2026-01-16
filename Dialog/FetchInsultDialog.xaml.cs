@@ -60,6 +60,7 @@ public partial class FetchInsultDialog : Window, INotifyPropertyChanged {
         }
         catch(Exception ex) {
             MessageBox.Show(ex.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show($"Sometimes the API is slow to respond. Try again.");
         }
         finally {
             IsLoading = false;
