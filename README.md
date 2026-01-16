@@ -20,9 +20,7 @@ A WPF application that lets the user generate, view, favourite, edit, and delete
 
 **How to run the project (tested on a clean machine)**
 
-1. Clone the repository  
-   ```bash
-   git clone <your-repo-url>
+Release 1.0 is available in Releases
 
 ![Login](Screenshots/LoginScreenshot.png)
 ![GermanInsult](Screenshots/GermanInsultScreenshot.png)
